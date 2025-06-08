@@ -71,8 +71,22 @@ def merge_all_data(filenames_pattern):
         
     final_merge_DF['user_age_group'] = final_merge_DF['age'].apply(categorize_age)
     final_merge_DF['user_age_group'] = final_merge_DF['user_age_group'].astype('category')
+    #print(final_merge_DF.info())
+    #print(final_merge_DF['user_age_group'].head(40))
+
+    #Normalze columns
+    final_merge_DF = final_merge_DF.rename(columns={'name':'experiment_name'})
+
+    #Clean the email column by striping whitespaces and '_' characters
+    final_merge_DF['email'] = final_merge_DF['email'].str.strip().str.replace('_','')
+    #print(final_merge_DF['email'].head(25))
+
+    #Convert dosage to grams by creating a new column dosage_grams
+    final_merge_DF['dosage'] = final_merge_DF['dosage'].astype(float)
+    final_merge_DF['dosage_grams'] = final_merge_DF['dosage'] / 1000
     print(final_merge_DF.info())
-    print(final_merge_DF['user_age_group'].head(40))
+
+    
 
     
 
