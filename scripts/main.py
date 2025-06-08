@@ -42,7 +42,6 @@ def merge_all_data(filenames_pattern):
 
     #Merge the results together
     final_merge_DF = user_health_DF.merge(supp_experi_DF, on = ["user_id","date"], how = "left")
-    
 
     #Drop duplicate rows
     final_merge_DF = final_merge_DF.drop_duplicates(subset=["user_id","date"])
@@ -88,15 +87,20 @@ def merge_all_data(filenames_pattern):
     #Clean the sleep hours column 
     final_merge_DF['sleep_hours'] = final_merge_DF['sleep_hours'].str.strip()\
                                     .str.replace('h|H','',regex=True).astype(float)
-    print(final_merge_DF['sleep_hours'].head(20))
+    #print(final_merge_DF['sleep_hours'].head(20))
 
-    print(final_merge_DF.info())
+    #Convert is_placebo column to Boolean
+    final_merge_DF['is_placebo'] = final_merge_DF['is_placebo'].astype('boolean')
 
-    
+    #print(final_merge_DF.info())
+    final_merge_DF = final_merge_DF[["user_id", "date", "email", "user_age_group",\
+                                     "experiment_name","supplement_name","dosage_grams",\
+                                     "is_placebo", "average_heart_rate","average_glucose",\
+                                     "sleep_hours","activity_level"]]
 
-    
+    result = final_merge_DF.copy()
 
+    return result   
 
-    #print(type(df_list[0]))    
-
-merge_all_data("data/*.csv")
+data_merger = merge_all_data("data/*.csv")
+print(data_merger.head())
