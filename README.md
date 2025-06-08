@@ -17,5 +17,16 @@ This sub-rountine can be adopted and the algorithm improved to handle different 
 to make the process of data cleaning to completely run as an automated process using this kind of wrangling sub-routines.
 
 How The Project Works:
-Clone the project into your environment
+- Clone the project into your environment
+- Run the pip install -r requirements.txt
+- run the main script by running python scripts/main.py
+- Voila!! You can start coding and improving the script
 
+
+## Author
+
+**Matthews Tumelo Phale**  
+Founder – Rectilinear Assist (Pty) Ltd  
+📧 matthewsphale@gmail.com  
+📞 +267 77366949
+Botswana(country)
