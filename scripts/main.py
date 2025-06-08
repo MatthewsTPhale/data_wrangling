@@ -84,6 +84,12 @@ def merge_all_data(filenames_pattern):
     #Convert dosage to grams by creating a new column dosage_grams
     final_merge_DF['dosage'] = final_merge_DF['dosage'].astype(float)
     final_merge_DF['dosage_grams'] = final_merge_DF['dosage'] / 1000
+
+    #Clean the sleep hours column 
+    final_merge_DF['sleep_hours'] = final_merge_DF['sleep_hours'].str.strip()\
+                                    .str.replace('h|H','',regex=True).astype(float)
+    print(final_merge_DF['sleep_hours'].head(20))
+
     print(final_merge_DF.info())
 
     
