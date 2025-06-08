@@ -28,7 +28,7 @@ def merge_all_data(filenames_pattern):
         health_df = df_list[2]
         users_df = df_list[3]
     except IndexError(df_list):
-        print("Index Bound out Error")
+        print("Index Out of range")
 
     #Merge User Profiles data with User Health data
     user_health_DF = users_df.merge(health_df, on = "user_id", how = "left")
